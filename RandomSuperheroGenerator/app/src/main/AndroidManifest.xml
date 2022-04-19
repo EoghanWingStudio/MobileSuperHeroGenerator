@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RandomSuperheroGenerator">
         <activity
+            android:name=".ComicBookGenerator"
+            android:exported="false" />
+        <activity
             android:name=".SuperHeroGenerator"
             android:exported="false" />
         <activity
