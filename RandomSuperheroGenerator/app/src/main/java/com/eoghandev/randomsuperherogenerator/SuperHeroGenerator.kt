@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.*
+
 import com.eoghandev.randomsuperherogenerator.models.hero.HeroModel
 import okhttp3.*
 import java.io.IOException
@@ -27,28 +24,6 @@ class SuperHeroGenerator : AppCompatActivity() {
 
      fun generateHero(view: android.view.View){
         val resultsView = findViewById<TextView>(R.id.heroText)
-
-         val cache = DiskBasedCache(cacheDir, 1024 * 1024) // 1MB cap
-
-         val network = BasicNetwork(HurlStack())
-         val requestQueue = RequestQueue(cache, network).apply {
-             start()
-         }
-
-         var hero: HeroModel
-
-
-        val request = StringRequest(Request.Method.GET, url,
-            Response.Listener<HeroModel> { response ->
-                println(response.toString())
-                hero = response
-            },
-            Response.ErrorListener { error ->
-                println(error.toString())
-                resultsView.text = error.toString()
-            })
-
-         requestQueue.add(request)
 
 
 

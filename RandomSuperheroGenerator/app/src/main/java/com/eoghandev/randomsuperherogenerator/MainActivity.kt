@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
 
     public fun superHeroChoice(view: android.view.View) {
-        val intent = Intent(this, SuperHeroGenerator::class.java)
+        val intent = Intent(this, ComicBookGenerator::class.java)
         Toast.makeText(this, "Test", Toast.LENGTH_LONG)
 
         startActivity(intent)
