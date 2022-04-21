@@ -1,22 +1,22 @@
 package com.eoghandev.randomsuperherogenerator
 
+import android.graphics.Bitmap
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.eoghandev.randomsuperherogenerator.models.comics.Comic
 import com.eoghandev.randomsuperherogenerator.models.comics.ComicResponse
-import com.eoghandev.randomsuperherogenerator.models.hero.HeroModel
 import com.eoghandev.randomsuperherogenerator.service.MarvelService
 import com.eoghandev.randomsuperherogenerator.service.ServiceBuilder
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.random.Random
 
-private val url = "https://gateway.marvel.com/v1/public/comics?limit=10&ts=1&apikey=dbfc4354c405c403c362f63cc60242a1&hash=7cfdc10da4f83dd1de3aaf98894c9f86"
+
 class ComicBookGenerator : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,18 +25,26 @@ class ComicBookGenerator : AppCompatActivity() {
 
     fun generateComic(view: android.view.View) {
         val resultsView = findViewById<TextView>(R.id.comicText)
+        val heroImage = findViewById<ImageView>(R.id.comicPic)
 
         val comicService = ServiceBuilder.buildService(MarvelService::class.java)
         val requestCall = comicService.getComics()
 
         requestCall.enqueue(object : Callback<ComicResponse>{
+
+
             override fun onResponse(
                 call: Call<ComicResponse>,
                 response: Response<ComicResponse>
             ) {
                 if (response.isSuccessful){
-                    val comicList = response.body()!!
-                    resultsView.text = comicList.toString()
+                    var comicList = response.body()!!.data?.results
+                    //resultsView.text = comicList.data?.results?.get(0)?.title
+
+                    var randomComic = randomSelection(comicList)
+
+                    var displayData = populateScreen(randomComic, resultsView, heroImage)
+
                 }
             }
             override fun onFailure(
@@ -45,5 +53,28 @@ class ComicBookGenerator : AppCompatActivity() {
                 resultsView.text = "Error " + t
             }
         })
+    }
+
+    private fun populateScreen(randomComic: Comic?, resultsView: TextView, heroImage: ImageView): Boolean {
+
+        try {
+
+            resultsView.text = randomComic?.title
+
+            val url = randomComic?.thumbnail?.path + "/portrait_medium." + randomComic?.thumbnail?.extension
+            Picasso.with(this).load(url).into(heroImage)
+
+
+            return true
+        }catch (e: Exception){
+            return false
+        }
+
+    }
+
+    private fun randomSelection(comicList: List<Comic>?): Comic? {
+
+        val randIndex = comicList?.let { Random.nextInt(it.size) }
+        return randIndex?.let { comicList?.get(it) }
     }
 }

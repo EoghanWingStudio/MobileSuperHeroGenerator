@@ -7,7 +7,7 @@
     tools:context=".ComicBookGenerator">
 
     <ImageView
-        android:id="@+id/superHeroPic"
+        android:id="@+id/comicPic"
         android:layout_width="232dp"
         android:layout_height="257dp"
         android:layout_marginTop="164dp"

@@ -8,7 +8,7 @@ import java.io.Serializable
 data class Comic(
     @SerializedName("id")
     @Expose
-    var id: Int? = null,
+    var id: String? = null,
     @SerializedName("title")
     @Expose
     var title: String? = null,
@@ -17,5 +17,5 @@ data class Comic(
     var thumbnail: Thumbnail? = null,
     @SerializedName("description")
     @Expose
-    var description: Int? = null,
+    var description: String? = null,
 ): Serializable
