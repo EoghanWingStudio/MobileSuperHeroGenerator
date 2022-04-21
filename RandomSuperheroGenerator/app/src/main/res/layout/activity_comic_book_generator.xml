@@ -6,36 +6,73 @@
     android:layout_height="match_parent"
     tools:context=".ComicBookGenerator">
 
-    <ImageView
-        android:id="@+id/comicPic"
-        android:layout_width="232dp"
-        android:layout_height="257dp"
-        android:layout_marginTop="164dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="411dp"
+        android:layout_height="403dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/generateBtn"
-        android:layout_width="163dp"
-        android:layout_height="91dp"
-        android:layout_marginBottom="59dp"
-        android:onClick="generateComic"
-        android:text="Button"
+        <ImageView
+            android:id="@+id/comicPic"
+            android:layout_width="232dp"
+            android:layout_height="257dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="414dp"
+        android:layout_height="439dp"
+        android:layout_marginTop="407dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/comicText"
-        android:layout_width="182dp"
-        android:layout_height="74dp"
-        android:layout_marginBottom="179dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/generateBtn"
+            android:layout_width="148dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="124dp"
+            android:layout_marginEnd="127dp"
+            android:layout_marginBottom="132dp"
+            android:onClick="generateComic"
+            android:text="Generate!"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/heroTitle"
+            android:layout_width="199dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="32dp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/comicText"
+            android:layout_width="184dp"
+            android:layout_height="127dp"
+            android:layout_marginTop="104dp"
+            android:layout_marginBottom="208dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
