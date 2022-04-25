@@ -1,13 +1,16 @@
 package com.eoghandev.randomsuperherogenerator
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.eoghandev.randomsuperherogenerator.models.comics.Comic
 import com.eoghandev.randomsuperherogenerator.models.comics.ComicResponse
 import com.eoghandev.randomsuperherogenerator.service.MarvelService
 import com.eoghandev.randomsuperherogenerator.service.ServiceBuilder
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,6 +22,22 @@ class ComicBookGenerator : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comic_book_generator)
+
+        val bottomView = findViewById<BottomNavigationView>(R.id.bottomAppBar)
+
+        bottomView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.home -> {
+                    val intent = Intent(this, SuperHeroGenerator::class.java)
+                    startActivity(intent,  )
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+
         generateComic()
     }
 
